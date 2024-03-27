@@ -1,0 +1,29 @@
+{
+"tinybot": {
+  "motor": {"trim":     {"left":    {"value": 0, "inputtype": "number", "datatype": "float", "min": -1, "max": 1, "step": 0.05},  
+  	                     "right":   {"value": 0, "inputtype": "number", "datatype": "float", "min": -1, "max": 1, "step": 0.05}},  
+		    "throttle": {"min":     {"value": 0.4,  "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05}},
+  		    "speed":    {"forward": {"value": 0.9,  "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05}, 
+  				         "back":    {"value": 0.5,  "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05},
+  				         "left":    {"value": 0.75, "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05},
+  				         "right":   {"value": 0.75, "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05},
+  				         "stop":    {"value": 0,    "inputtype": "number", "datatype": "float", "min":  0, "max": 0, "step": 0}} },
+  "cameras": {"front": {"camModel": "logiC615", "device": "/dev/video0", "outputPort": 8000,
+						"res_rows": 480,  "res_cols": 640, "fps_target": 30, 
+	                    "intrinsics": {"640x480": {"cx": 323.09833463, "cy": 235.34434675, "fx": 664.11131483, "fy": 666.96448353, 
+									               "dist": [ 0.0541955722, -1.54492425, 0.00296813007, -0.00205356539, 5.53591285] } } } } }, 
+"simTinybot": {
+  "motor": {"trim":     {"left":    {"value": 0, "inputtype": "number", "datatype": "float", "min": -1, "max": 1, "step": 0.05},  
+  	                     "right":   {"value": 0, "inputtype": "number", "datatype": "float", "min": -1, "max": 1, "step": 0.05}},  
+		    "throttle": {"min":     {"value": 0.4,  "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05}},
+  		    "speed":    {"forward": {"value": 0.9,  "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05}, 
+  				         "back":    {"value": 0.5,  "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05},
+  				         "left":    {"value": 0.75, "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05},
+  				         "right":   {"value": 0.75, "inputtype": "number", "datatype": "float", "min":  0, "max": 1, "step": 0.05},
+  				         "stop":    {"value": 0,    "inputtype": "number", "datatype": "float", "min":  0, "max": 0, "step": 0}} },
+  "cameras": {"front": {"camModel": "simTinybot", "topic": "/robot/camera/image_raw/compressed", 
+						"res_rows": 480,  "res_cols": 640, "fps_target": 30, "outputPort": 8000, 
+	                    "intrinsics": {"640x480": {"cx": 320.5, "cy": 240.5, "fx": 277.191356, "fy": 277.191356, 
+									               "dist": [0.0, 0.0, 0.0, 0.0, 0.0]} } } } }
+}
+

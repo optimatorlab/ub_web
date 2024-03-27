@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>IE Web Console</title>
+<link rel="stylesheet" href="css/index.css">
+
+<script type="text/javascript" src="roslib/roslib.min.js"></script>  
+<script src="scripts/currentIP.js"></script>
+<script src="scripts/ros.js"></script>
+
+<script type="text/javascript" src="scripts/jquery-3.6.0.min.js"></script>
+
+<script src="scripts/common.js"></script>
+<script src="scripts/util.js"></script>
+
+<script src="scripts/console.js"></script>
+<link rel="stylesheet" href="css/console.css">
+
+
+<!--
+<script src="scripts/appearance.js"></script>
+<script src="scripts/motor.js"></script>
+<script src="scripts/gallery.js"></script>
+<script src="scripts/power.js"></script>
+<script src="scripts/aruco.js"></script>
+-->
+
+<script src="scripts/settings.js"></script>
+<script src="scripts/audio.js"></script>
+<script src="scripts/touchpad.js"></script>
+<script src="scripts/dpad.js"></script>
+<script src="scripts/camera.js"></script>
+<script src="scripts/chat.js"></script>
+<script src="scripts/joystick.js"></script>
+
+</head>
+
+<body>
+<div id="divMain" style="margin:0;"></div>
+
+<script>
+var config = {userID: -1, robotID: -1};
+
+/*
+// Add our icons/divs/widgets
+// 1. These are one-time icons/divs:	
+var power      = new Power(instName="power", parentDiv=divMain, 
+						   iconOff="images/icon_power_off.png", iconOn="images/icon_power_on.png", 
+						   iconHeight="30px", iconTitle="Appearance Preferences", 
+						   iconStyle={'top': '5px', 'right': '0px'}, 
+						   divStyle={'top': '5px', 'right': '45px'});
+						   
+var appearance = new Appearance(instName="appearance", parentDiv=divMain, 
+								iconOff="images/icon_preferences_off.png", iconOn="images/icon_preferences_on.png", 
+								iconHeight="30px", iconTitle="Appearance Preferences", 
+								iconStyle={'top': '55px', 'right': '0px'}, 
+								divStyle={'top': '5px', 'right': '45px'});
+
+var motor      = new Motor(instName="motor", parentDiv=divMain, 
+							iconOff="images/icon_steering_off.png", iconOn="images/icon_steering_on.png", 
+							iconHeight="30px", iconTitle="Steering Config", 
+							iconStyle={'top': '105px', 'right': '0px'}, 
+							divStyle={'top': '5px', 'right': '45px'});
+
+var gallery    = new Gallery(instName="gallery", parentDiv=divMain, 
+							iconOff="images/icon_gallery_off.png", iconOn="images/icon_gallery_on.png", 
+							iconHeight="30px", iconTitle="Photo Gallery", 
+							iconStyle={'top': '155px', 'right': '0px'}, 
+							divStyle={'top': '5px', 'right': '45px'});
+
+						
+
+var aruco      = new Aruco(instName="aruco", parentDiv=divMain, 
+							iconOff="images/icon_aruco_off.png", iconOn="images/icon_aruco_on.png", 
+							iconHeight="30px", iconTitle="ArUco Config", 
+							iconStyle={'top': '205px', 'right': '0px'}, 
+							divStyle={'top': '5px', 'right': '45px'});
+*/
+var settings = new Settings(instName="settings", parentDiv=divMain, 
+							iconOff="images/icon_config_off.png", iconOn="images/icon_config_on.png", 
+							iconHeight="30px", iconTitle="General Settings", 
+							iconStyle={'top': '55px', 'left': '0px'}, 
+							divStyle={'top': '5px', 'left': '45px', 'width': '200px'});
+
+var camera = new Camera('ros', '/realsense/color/image_raw/compressed', 'sensor_msgs/CompressedImage', HOST_IP, 8000);
+
+var cons = new Console(instName="cons", parentDiv=divMain, 
+					   iconOff="images/icon_console_off.png", iconOn="images/icon_console_on.png", 
+					   iconHeight="30px", iconTitle="Console", 
+					   iconStyle={'top': '5px', 'left': '0px'}, 
+					   divStyle={'top': '5px', 'left': '45px', 'width': '300px', 'overflow': 'hidden', 
+					   		  'border': '1px solid black', 'border-radius': '5px'}, 
+					   consoleHeight="200px", 
+					   badgeStyle={});
+
+var chat = new Chat(parentDiv=divcons, {location:{'top': '2px', 'right': '45px'}});
+// joystickTriggers = [{btn: 3, func: chat.micCheckFunc}];
+
+
+// 2. There could be multiple instances of these widgets:
+var dpad1      = new Dpad('dpad1', 'pubDpad', {'bottom': '0px', 'left': '0px'}, true); // hidden
+var dpad2      = new Dpad('dpad2', 'pubDpad', {'bottom': '0px', 'right': '0px'}); 
+tidyupDpad(settings, ['dpad1', 'dpad2']);
+
+var tp1        = new Touchpad('tp1', 150, 150, {'left': '10px', 'bottom': '10px'});
+touchpadLoop([tp1], 0, TOUCHPAD.MAX_QUIET_COUNT, TOUCHPAD.LOOP_DELAY_FAST, TOUCHPAD.LOOP_DELAY_SLOW, TOUCHPAD.LOOP_DELAY_FAST);
+var tp2        = new Touchpad('tp2', 150, 150, {'right': '10px', 'bottom': '10px'}, true); // hidden
+touchpadLoop([tp2], 0, TOUCHPAD.MAX_QUIET_COUNT, TOUCHPAD.LOOP_DELAY_FAST, TOUCHPAD.LOOP_DELAY_SLOW, TOUCHPAD.LOOP_DELAY_FAST);
+tidyupTouchpad(settings, ['tp1', 'tp2']);
+
+
+// Define collections of icons/divs.
+// These make it easy to close subsets of divs at once.
+// Each of our divs will be automatically added to 'all'.
+// The 'nw' (northwest) group will have the console and settings divs.
+var iconGroups = {'all': [cons, settings, camera, dpad1, tp1], 
+				  'nw':  [cons, settings]};
+
+function closeDivs(group)  {
+	for (const element of iconGroups[group])  {
+		element.hideDivs();
+	}
+}
+							  
+
+/*
+var cfgData;
+
+function dispoData(data)  {
+	motor.setCfg(data, VEHICLE_TYPE);   // VEHICLE_TYPE comes from currentIP.js
+	camera.setCfg(data, VEHICLE_TYPE);
+	aruco.setCfg(data, VEHICLE_TYPE);
+}
+		
+// See https://stackoverflow.com/questions/63565509/vanilla-javascript-how-to-read-local-json-file
+fetch('./config/config.json')
+    .then(response => response.json())
+    .then(data => dispoData(data))
+    .catch(error => console.log(error));
+
+speak('hello');
+*/
+</script>
+
+</body>
+</html>
+
