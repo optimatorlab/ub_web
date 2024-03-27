@@ -8,19 +8,6 @@ from geometry_msgs.msg import Twist
 
 from ub_web.msg import touchpad, dpad, chat, audio_command, audio_response, audio_transcribed, joystick
 
-
-'''
-To Do:
-HTML
-	-[ ] Disable "push to talk" button if mic is already on
-	-[ ] Designate a joystick button to control mic.  
-	-[ ] Add camera controls (e.g., Aruco options, resolution, fps, etc.)
-
-Python
-	-[ ] Add olab_camera?		
-'''
-
-
 # ----- See the `interpret()` function below --------------
 import re
 

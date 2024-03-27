@@ -83,9 +83,11 @@ The `bash` script will also open a Chromium tab.
 
 ## Customization
 - TODO:
-    - Allow user to change the camera topic.
+    - Allow user to change the camera topic in the browser (instead of editing `index.html`).
     - Assign joystick buttons to different purposes.
     - Add "take picture" functionality (and save photos to a "gallery").
+    - Display odometry info.
+    - Display laserscan data.
 
 ---
 
