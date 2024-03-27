@@ -1,0 +1,110 @@
+/* Emergency (0), alert (1), critical (2), error (3) */
+.severity_0, .severity_1, .severity_2, .severity_3  { 
+	color: white; 
+	font-weight: bold; 
+	background-color: #990000;  /* deep red */
+	padding: 4px 0;
+	margin: 2px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+/* Warning (4) */
+.severity_4  {
+	color: black;  /* deep red */
+	font-weight: bold; 
+	background-color: #ff9999;   /* light red */
+	padding: 4px 0;
+	margin: 2px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+/* Notice (5) */
+.severity_5  {
+	color: black; 
+	font-weight: bold; 
+	background-color: #ffff99;  /* medium yellow */
+	padding: 4px 0;
+	margin: 2px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+/* Info (6), debug (7) */
+.severity_6, .severity_7  {
+	color: #fff; 
+	font-weight: normal; 
+	background-color: #525354;
+	padding: 4px 0;
+	margin: 2px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+/* AllClear (10) */
+.severity_10  {
+	color: black; 				
+	font-weight: normal; 
+	background-color: #02cf10;	/* medium Green */
+	padding: 4px 0;
+	margin: 2px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+/* Chat Message - label above message showing author's name */
+.chat_sender_name {
+	font-size: 9px;
+}
+
+/* Chat Message - From this user */
+.chat_own  {
+	background-color: #1043eb;  /* blue */
+	border-radius: 12px;
+	margin: 2px;  /* 2px 2px 2px 120px; */
+	padding: 8px 8px;
+	float: right;
+	clear: both;
+	max-width: 60%;
+}
+
+/* Chat Message - From other user */
+.chat_other  {
+	background-color: #313030;  /* almost black */
+	border-radius: 12px;
+	margin: 2px; /* 2px 120px 2px 2px;*/
+	padding: 8px 8px;
+	float: left;
+	clear: both;
+	max-width: 60%;
+}
+
+/* Audio Command Transcription - From this user */
+.audio_own  {
+	background-color: #02720a;  /* deep green */
+	font-style: italic;
+	border-radius: 12px;
+	margin: 2px;  /* 2px 2px 2px 120px; */
+	padding: 8px 8px;
+	float: right;
+	clear: both;
+	max-width: 60%;
+}
+
+/* Audio Response - From MC */
+.audio_response  {
+	background-color: #313030;  /* almost black */
+	border-radius: 12px;
+	margin: 2px; /* 2px 120px 2px 2px;*/
+	padding: 8px 8px;
+	float: left;
+	clear: both;
+	max-width: 60%;
+}
+/* ------------------------------------------------------ */

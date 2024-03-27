@@ -1,0 +1,27 @@
+<launch>
+    <!-- 
+		We could start our `main.py` script here, 
+		but I prefer to have it running in the 
+		terminal for debugging purposes.
+		See `ub-web-start.sh`.
+	-->
+    <!--<group ns="put group namespace here">-->
+		<!--
+        <node name="main" pkg="ub_web" type="main.py" />
+        -->
+        <!--
+        An example of starting a node with parameters:
+        <node name="a_node_with_params"  pkg="name_of_pkg" type="some_filename.py">
+			<param name="matrixPID" value="419" />
+        </node>
+        -->
+    <!--</group>-->
+    
+    <!-- This is our link between ROS and our webpage: -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+        <arg name="unregister_timeout" value = "99999999" />
+        <arg name="ssl" value = "true" />
+        <arg name="certfile" value = "$(env HOME)/catkin_ws/src/ub_web/html/ssl/ca.crt" />
+        <arg name="keyfile" value = "$(env HOME)/catkin_ws/src/ub_web/html/ssl/ca.key" />
+    </include>
+</launch>

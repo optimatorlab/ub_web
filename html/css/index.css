@@ -1,0 +1,58 @@
+html {
+    height: 100%;
+    font-family: sans-serif;	
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    overflow-x: hidden;
+    height: 100%;
+}
+h4 {
+	padding: 2px;
+	margin: 2px;
+}
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* IE 10 and IE 11 */
+  user-select: none;         /* Standard syntax */
+}
+
+/* Buttons and Pull-down Menus */
+.togglebuttonoff{
+    background-color: #525354; 	/* #f44336;	Red */
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 3px;
+}
+
+.button, button {
+    background-color: #047eff; /* Blue*/ /* #ef6700; orange */	/*#f44336;	Red */
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.button:hover, button:hover {
+    background-color: #f07d26
+}
+
+button:disabled,
+button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
+}
