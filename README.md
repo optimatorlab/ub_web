@@ -34,6 +34,11 @@ As of the moment this file was written, `v20231117` was the latest version.  You
 pip install openai-whisper==20231117
 ```
 
+You'll also need `ffmpeg`.  If it's not already installed on your machine:
+```
+sudo apt update && sudo apt install ffmpeg
+```
+
 ### Clone the contents of the `ub_web` repo into `~/catkin_ws/src` 
 
 ```
@@ -45,6 +50,14 @@ git clone https://github.com/optimatorlab/ub_web.git
 ```
 cd ~/catkin_ws
 catkin_make
+```
+
+### Install node.js
+```
+cd ~/catkin_ws/src/ub_web/html
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install
 ```
 
 --- 
