@@ -98,7 +98,7 @@ class Text2Speech:
 				os.makedirs(MIC_RECORD_DIRECTORY, exist_ok=True)
 			
 		except Exception as e:
-			pubConsole(MAV_SEVERITY_ERROR, f'Error in Text2Speech init: {e}')
+			pubConsole(SEVERITY_ERROR, f'Error in Text2Speech init: {e}')
 			
 	
 	def transcribe(self, audio_data, initial_prompt=None, debug=False):
@@ -133,5 +133,5 @@ class Text2Speech:
 			return result['text']
 			
 		except Exception as e:
-			pubConsole(MAV_SEVERITY_ERROR, f"Error in transcribe: {e}")
+			pubConsole(SEVERITY_ERROR, f"Error in transcribe: {e}")
 
